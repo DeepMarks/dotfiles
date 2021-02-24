@@ -7,7 +7,7 @@ export HISTFILESIZE=50000
 export HISTSIZE=50000
 
 # Add a timestamp to each command.
-export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
+export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S: "
 
 # Duplicate lines and lines starting with a space are not put into the history.
 export HISTCONTROL=ignoreboth
@@ -74,3 +74,5 @@ if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
     # Requires: https://sourceforge.net/projects/vcxsrv/ (or alternative)
     export DISPLAY=:0
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

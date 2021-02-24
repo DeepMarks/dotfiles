@@ -95,6 +95,9 @@ Plug 'vim-scripts/AutoComplPop'
 " Run test suites for various languages.
 Plug 'janko/vim-test'
 
+" Color Codes
+Plug 'chrisbra/Colorizer'
+
 " Languages and file types.
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chr4/nginx.vim'
@@ -117,6 +120,9 @@ Plug 'tpope/vim-rails'
 Plug 'vim-python/python-syntax'
 Plug 'vim-ruby/vim-ruby'
 Plug 'wgwoods/vim-systemd-syntax'
+
+" LaTex live preview compilation tools
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -142,7 +148,7 @@ if !exists('g:gruvbox_contrast_light')
 endif
 
 " Set the color scheme.
-colorscheme gruvbox
+colorscheme one
 set background=dark
 
 " Specific colorscheme settings (must come after setting your colorscheme).
@@ -601,9 +607,9 @@ let g:limelight_conceal_ctermfg=244
 " iamcco/markdown-preview.nvim
 " .............................................................................
 
-let g:mkdp_auto_close=0
+let g:mkdp_auto_close=1
 let g:mkdp_refresh_slow=1
-let g:mkdp_markdown_css='/home/nick/.local/lib/github-markdown-css/github-markdown.css'
+let g:mkdp_markdown_css='/home/roman/local/lib/markdown-preview-css/github/github-markdown.css'
 
 " .............................................................................
 " SirVer/ultisnips
@@ -628,3 +634,32 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
+
+" .............................................................................
+" lervag/vimtex
+" .............................................................................
+let g:vimtex_view_general_viewer = 'sumatra'
+let g:vimtex_view_general_options
+  \ = '-reuse-instance -forward-search @tex @line @pdf'
+"let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+
+let g:vimtex_view_general_options
+  \ = '-reuse-instance -forward-search @tex @line @pdf'
+  \ . ' -inverse-search "' . exepath(v:progpath)
+  \ . ' --servername ' . v:servername
+  \ . ' --remote-send \"^<C-\^>^<C-n^>'
+  \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+  \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+  \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+
+" TOC settings
+let g:vimtex_toc_config = {
+  \ 'name' : 'TOC',
+  \ 'layers' : ['content', 'todo', 'include'],
+  \ 'resize' : 1,
+  \ 'split_width' : 50,
+  \ 'todo_sorted' : 0,
+  \ 'show_help' : 1,
+  \ 'show_numbers' : 1,
+  \ 'mode' : 2,
+  \}
