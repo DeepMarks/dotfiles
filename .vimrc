@@ -124,6 +124,15 @@ Plug 'wgwoods/vim-systemd-syntax'
 " LaTex live preview compilation tools
 Plug 'lervag/vimtex'
 
+" Interactive python output
+Plug 'sillybun/vim-repl'
+
+" Run code in tmux panel
+Plug 'jpalardy/vim-slime'
+
+" Enable vim to qtconsole interaction
+Plug 'jupyter-vim/jupyter-vim'
+
 call plug#end()
 
 " -----------------------------------------------------------------------------
@@ -638,6 +647,7 @@ nmap <silent> t<C-g> :TestVisit<CR>
 " .............................................................................
 " lervag/vimtex
 " .............................................................................
+
 let g:vimtex_view_general_viewer = 'sumatra'
 let g:vimtex_view_general_options
   \ = '-reuse-instance -forward-search @tex @line @pdf'
@@ -663,3 +673,30 @@ let g:vimtex_toc_config = {
   \ 'show_numbers' : 1,
   \ 'mode' : 2,
   \}
+
+" .............................................................................
+"  jpalardy/vim-slime
+" .............................................................................
+
+let g:slime_target = 'tmux'
+let g:slime_paste_file = '${HOME}/.slime_paste'
+let g:slime_python_ipython = 1
+
+let g:slime_cell_delimiter = '```'
+nmap <leader>ss <Plug>SlimeLineSend
+nmap <leader>sc <Plug>SlimeSendCell
+nmap <leader>sr <Plug>SlimeParagraphSend
+nmap <leader>sf <Plug>SlimeConfig
+
+" .............................................................................
+"  jupyter-vim/jupyter-vim
+" .............................................................................
+
+" Always use the same virtualenv for vim, regardless of what Python
+" environment is loaded in the shell from which vim is launched
+let g:vim_virtualenv_path = '/home/roman/.venvs/vimJupy/'
+if exists('g:vim_virtualenv_path')
+  pythonx import os; import vim
+  pythonx activate_this =  os.path.join(vim.eval('g:vim_virtualenv_path'),'bin/activate_this.py')
+  pythonx with open(activate_this) as f: exec(f.read(), {'__file__': activate_this})
+endif
