@@ -151,3 +151,12 @@ fi
 
 WSLINK_PATH="${HOME}/.local/bin/wslinks"
 export PATH="${PATH}:${WSLINK_PATH}"
+
+export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
+
+# Destination for temporary xserver exchange
+export XDG_RUNTIME_DIR="/tmp/runtime-roman/"
+export RUNLEVEL=3
+
+# Set remote as default for qt5
+export LIBGL_ALWAYS_INDIRECT=1

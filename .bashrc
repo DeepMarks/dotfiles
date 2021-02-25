@@ -76,3 +76,10 @@ if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Destination for temporary xserver exchange
+export XDG_RUNTIME_DIR="/tmp/runtime-roman/"
+export RUNLEVEL=3
+
+# Set remote as default for qt5
+export LIBGL_ALWAYS_INDIRECT=1
