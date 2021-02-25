@@ -13,7 +13,9 @@ sudo apt update && sudo apt install -y \
 	shellcheck \
 	tmux \
 	unzip \
-	vim-gtk
+	vim-gtk \
+	tk-dev \
+	libsqlite3-dev
 
 # Create symlinks to various dotfiles. If you didn't clone it to ~/dotfiles
 # then adjust the ln -s symlink source (left side) to where you cloned it.
@@ -99,13 +101,23 @@ asdf global ruby $(asdf latest ruby)
 # Install Ansible.
 asdf plugin remove python
 pip3 install --user ansible
+
+# Install Python
 asdf plugin add python
+asdf install python 3.8.5
 asdf install python latest
+asdf global python 3.8.5
+python -m pip install --upgrade \
+	pip \
+	virtualenv
 asdf global python $(asdf latest python)
+python -m pip install --upgrade \
+	pip \
+	virtualenv
 
 # Install AWS CLI v2.
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-	&& unzip awscliv2.zip && sudo All | ./aws/install && rm awscliv2.zip
+	&& unzip awscliv2.zip && sudo A | ./aws/install && rm awscliv2.zip
 
 # Install Terraform.
 curl "https://releases.hashicorp.com/terraform/0.13.2/terraform_0.13.2_linux_amd64.zip" -o "terraform.zip" \
@@ -154,6 +166,21 @@ sudo apt install -y texlive-full
 
 # Install  markdown-preview for vim
 vim +'silent! mkdp#util#install()' +qa
-/.local/lib/markdown-preview-css/github/github-markdown.css
 mkdir -p "${HOME}/.local/lib/markdown-preview-css/github/"
 ln -sf "${PWD}/.local/lib/markdown-preview-css/github/github-markdown.css" "${HOME}/.local/lib/markdown-preview-css/github/"
+
+# Creare Python-Environment with Jupyter QtConsole output
+asdf global python 3.8.5
+VENVSPATH="${HOME}/.venvs/"
+mkdir -p "${VENVSPATH}"
+ln -sf "${PWD}${VENVSPATH#${HOME}}vimJupy_requirements.txt" "${VENVSPATH}"
+python -m virtualenv "${VENVSPATH}vimJupy"
+source "${VENVSPATH}vimJupy/bin/activate"
+python -m pip install --upgrade -r "${VENVSPATH}vimJupy_requirements.txt"
+deactivate
+asdf global python $(asdf latest python)
+
+# Customize QtConsole
+mkdir -p "${HOME}/.jupyter/custom/"
+ln -sf "${PWD}/.jupyter/jupyter_qtconsole_config.py" "${HOME}/.jupyter/"
+git clone "https://github.com/romanrue/qtc-color-themes.git"  "${HOME}/.jupyter/custom/qtc-color-themes"
