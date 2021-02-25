@@ -15,5 +15,5 @@ c.ConsoleWidget.scrollbar_visibility = False
 color_theme = 'onedark'  # specify color theme
 import pkg_resources
 c.JupyterQtConsoleApp.stylesheet = pkg_resources.resource_filename(
-            "jupyter_qtconsole_colorschemes", "{}.css".format(color_theme))
+            "qtc_color_themes", "{}.css".format(color_theme))
 c.JupyterWidget.syntax_style = color_theme
