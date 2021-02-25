@@ -63,3 +63,7 @@ If you prefer another browser, change the the firefox link in the `.vimrc` to yo
 
 #### Introduction
 If you want to learn more, I can really recommend the content provided by the original author.
+
+## TODO
+
+- Add set-theme support for QtConsole
