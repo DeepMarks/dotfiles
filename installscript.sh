@@ -15,7 +15,8 @@ sudo apt update && sudo apt install -y \
 	unzip \
 	vim-gtk \
 	tk-dev \
-	libsqlite3-dev
+	libsqlite3-dev \
+	libbz2-dev
 
 # Create symlinks to various dotfiles. If you didn't clone it to ~/dotfiles
 # then adjust the ln -s symlink source (left side) to where you cloned it.
