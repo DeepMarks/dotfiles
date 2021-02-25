@@ -177,10 +177,12 @@ ln -sf "${PWD}${VENVSPATH#${HOME}}vimJupy_requirements.txt" "${VENVSPATH}"
 python -m virtualenv "${VENVSPATH}vimJupy"
 source "${VENVSPATH}vimJupy/bin/activate"
 python -m pip install --upgrade -r "${VENVSPATH}vimJupy_requirements.txt"
-deactivate
-asdf global python $(asdf latest python)
 
 # Customize QtConsole
 mkdir -p "${HOME}/.jupyter/custom/"
 ln -sf "${PWD}/.jupyter/jupyter_qtconsole_config.py" "${HOME}/.jupyter/"
 git clone "https://github.com/romanrue/qtc-color-themes.git"  "${HOME}/.jupyter/custom/qtc-color-themes"
+python -m pip install -e "${HOME}/.jupyter/custom/qtc-color-themes"
+
+deactivate
+asdf global python $(asdf latest python)
