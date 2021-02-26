@@ -149,8 +149,10 @@ if grep -q "microsoft" /proc/version &>/dev/null; then
   export GPG_TTY=$(tty)
 fi
 
+LOCALBIN_PATH="${HOME}/.local/bin"
 WSLINK_PATH="${HOME}/.local/bin/wslinks"
-export PATH="${PATH}:${WSLINK_PATH}"
+echo "${PATH}" | grep -q "${LOCALBIN_PATH}" || export PATH="${PATH}:${LOCALBIN_PATH}"
+echo "${PATH}" | grep -q "${WSLINK_PATH}" || export PATH="${PATH}:${LOCALBIN_PATH}"
 
 export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
 

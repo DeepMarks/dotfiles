@@ -12,7 +12,7 @@ c.ConsoleWidget.other_output_prefix = '[wsl] '
 c.ConsoleWidget.paging = 'vsplit'
 c.ConsoleWidget.scrollbar_visibility = False
 
-color_theme = 'onedark'  # specify color theme
+color_theme = 'onelight'  # specifycolor theme
 import pkg_resources
 c.JupyterQtConsoleApp.stylesheet = pkg_resources.resource_filename(
             "qtc_color_themes", "{}.css".format(color_theme))

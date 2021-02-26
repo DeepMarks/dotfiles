@@ -80,7 +80,7 @@ TERMINAL_CONFIG = f'/c/Users/{get_windows_user()}/AppData/Local/Packages/Microso
 SHELL_CONFIG = f'{HOME}/.bashrc'
 TMUX_CONFIG = f'{HOME}/.tmux.conf'
 VIM_CONFIG = f'{HOME}/.vimrc'
-
+QTC_CONFIG = f'{HOME}/.jupyter/jupyter_qtconsole_config.py'
 
 def edit_inplace(file, preserve_symlinks=True):
     if preserve_symlinks:
@@ -146,6 +146,11 @@ def change_fzf_theme(bg):
                    f'FZF_DEFAULT_OPTS="--color={bg}"', line)
             sys.stdout.write(line)
 
+def change_qtc_theme(theme, bg):
+    with edit_inplace(QTC_CONFIG) as f:
+        for line in f:
+            line = re.sub(r"^color_theme = '.*'$", f"color_theme = '{theme}{bg}'", line)
+            sys.stdout.write(line)
 
 def parseargs():
     parser = argparse.ArgumentParser(
@@ -180,6 +185,7 @@ def main():
     change_tmux_theme(theme, bg)
     change_vim_theme(theme, bg)
     change_fzf_theme(bg)
+    change_qtc_theme(theme, bg)
 
 
 if __name__ == '__main__':
