@@ -180,9 +180,12 @@ source "${VENVSPATH}vimJupy/bin/activate"
 python -m pip install --upgrade -r "${VENVSPATH}vimJupy_requirements.txt"
 
 # Customize QtConsole
-mkdir -p "${HOME}/.jupyter/custom/"
+QTC_THEMES="${HOME}/.jupyter/custom/qtc-color-themes"
+mkdir -p "$(dirname "${QTC_THEMES}")"
 ln -sf "${PWD}/.jupyter/jupyter_qtconsole_config.py" "${HOME}/.jupyter/"
-git clone "https://github.com/romanrue/qtc-color-themes.git"  "${HOME}/.jupyter/custom/qtc-color-themes"
+test -d ${QTC_THEMES} \
+	&& git --git-dir=${QTC_THEMES}/.git pull \
+	|| git clone "https://github.com/romanrue/qtc-color-themes.git" ${QTC_THEMES}
 python -m pip install -e "${HOME}/.jupyter/custom/qtc-color-themes"
 
 deactivate
