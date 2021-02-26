@@ -1,6 +1,6 @@
 # dotfiles
 
-This branch of the excellent [dotfiles](https://github.com/nickjj/dotfiles) by [nickjj](https://github.com/nickjj) extends the original environment that is made for web development in vim with a local python environment for data science. For convenience it includes an shell script that executes all installations / updates automatically. Once installed it sets the default shell to zsh. Note that the installation script should only be used in WSL 2, since it also changes files in the windows directories.
+This branch of the excellent [dotfiles](https://github.com/nickjj/dotfiles) by [nickjj](https://github.com/nickjj) extends the original environment, which is made for web development in vim, with a local python environment for data science. For convenience it includes a shell script that executes all installations / updates automatically. Once installed it sets the default shell to zsh. Note that the installation script should only be used in WSL 2, since it also changes files in the windows directories.
 
 ## Installation 
 
@@ -40,7 +40,7 @@ Make firewall exceptions for VcXsrv. This can be done either by allowing all com
 
 > Change github credentials in `.gitconfig.user`
 
-> Source install script from dotfiles directory (you must navigate to the dotfiles directory every time you source it!)
+> Source install script from dotfiles directory (always source from within the dotfiles folder!)
 > ```sh
 > cd ~/dotfiles/
 > ./installscript.sh
