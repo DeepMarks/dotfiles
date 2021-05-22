@@ -68,3 +68,4 @@ If you want to learn more, I can really recommend the content provided by the or
 
 - Add/Iterate on Themes for QtConsole
 - Add Themes for jupyter notebook
+# dotfiles
