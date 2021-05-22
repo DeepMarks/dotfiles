@@ -15,6 +15,10 @@ Plug 'rakr/vim-one'
 " Gruvbox Community theme.
 Plug 'gruvbox-community/gruvbox'
 
+" Data Scienve environment.
+Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
+
 " Integrate fzf with Vim.
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
