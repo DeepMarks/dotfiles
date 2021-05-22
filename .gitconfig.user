@@ -1,10 +1,10 @@
 [user]
-  name = Roman Rüttimann
-  email = roman.ruettimann@gmail.com
+  name = Noah Mamié
+  email = noah.mamie2@gmail.com
   # Uncomment the options below to auto-sign your git commits / tags using GPG.
   # Learn more about how to set up a GPG key pair here:
   #   https://nickjanetakis.com/blog/creating-and-managing-a-gpg-key-pair
-  #signingkey = roman.ruettimann@gmail.com
+  #signingkey = noah.mamie2@gmail.com
 
 #[commit]
 #  gpgsign = true

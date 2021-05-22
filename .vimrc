@@ -618,7 +618,7 @@ let g:limelight_conceal_ctermfg=244
 
 let g:mkdp_auto_close=1
 let g:mkdp_refresh_slow=1
-let g:mkdp_markdown_css='/home/roman/local/lib/markdown-preview-css/github/github-markdown.css'
+let g:mkdp_markdown_css='/home/noah/local/lib/markdown-preview-css/github/github-markdown.css'
 
 " .............................................................................
 " SirVer/ultisnips
@@ -694,7 +694,7 @@ nmap <leader>sf <Plug>SlimeConfig
 
 " Always use the same virtualenv for vim, regardless of what Python
 " environment is loaded in the shell from which vim is launched
-let g:vim_virtualenv_path = '/home/roman/.venvs/vimJupy/'
+let g:vim_virtualenv_path = '/home/noah/.venvs/vimJupy/'
 if exists('g:vim_virtualenv_path')
   pythonx import os; import vim
   pythonx activate_this =  os.path.join(vim.eval('g:vim_virtualenv_path'),'bin/activate_this.py')
