@@ -17,6 +17,14 @@ Plug 'gruvbox-community/gruvbox'
 
 " Data Scienve environment.
 Plug 'scrooloose/nerdtree'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'itchyny/lightline.vim'
 
 " Integrate fzf with Vim.
@@ -123,6 +131,8 @@ Plug 'tpope/vim-liquid'
 Plug 'tpope/vim-rails'
 Plug 'vim-python/python-syntax'
 Plug 'vim-ruby/vim-ruby'
+Plug 'gaalcaras/ncm-R'
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'wgwoods/vim-systemd-syntax'
 
 " LaTex live preview compilation tools
@@ -153,6 +163,7 @@ if (has("termguicolors"))
 endif
 
 " Enable syntax highlighting.
+let python_highlight_all=1
 syntax on
 
 " Specific colorscheme settings (must come before setting your colorscheme).
@@ -235,6 +246,7 @@ set noerrorbells visualbell t_vb=
 set noshiftround
 set nospell
 set nostartofline
+set noswapfile
 set number relativenumber
 set regexpengine=1
 set ruler
@@ -565,7 +577,6 @@ augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys.
 let g:qs_highlight_on_keys=['f', 'F', 't', 'T']
-
 " Only underline the highlights instead of using custom colors.
 highlight QuickScopePrimary gui=underline cterm=underline
 highlight QuickScopeSecondary gui=underline cterm=underline
@@ -652,7 +663,7 @@ nmap <silent> t<C-g> :TestVisit<CR>
 " lervag/vimtex
 " .............................................................................
 
-let g:vimtex_view_general_viewer = 'sumatra'
+let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options
   \ = '-reuse-instance -forward-search @tex @line @pdf'
 "let g:vimtex_view_general_options_latexmk = '-reuse-instance'
@@ -704,3 +715,33 @@ if exists('g:vim_virtualenv_path')
   pythonx activate_this =  os.path.join(vim.eval('g:vim_virtualenv_path'),'bin/activate_this.py')
   pythonx with open(activate_this) as f: exec(f.read(), {'__file__': activate_this})
 endif
+
+" .............................................................................
+"  Data Science env
+" .............................................................................
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+let g:SimpylFold_docstring_preview=1
+
+" .............................................................................
+"  scrooloose/nerdtree
+" .............................................................................
+
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Shortcuts for nerdtree.
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" .............................................................................
+"  davidhalter/jedi-vim
+" .............................................................................
+let g:jedi#use_tabs_not_buffers = 1
