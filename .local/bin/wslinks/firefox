@@ -1,1 +1,1 @@
-chrome.exe "$@"
+firefox.exe "$@"
